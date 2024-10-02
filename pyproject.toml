@@ -1,0 +1,15 @@
+[project]
+name = "pylangs"
+version = "0.0.1dev"
+authors = [
+  { name="ZAID", email="me@zaid.pro" },
+]
+description = "Soon"
+readme = "README.md"
+requires-python = ">=3.10"
+[tool.setuptools]
+include-package-data = false
+
+[tool.setuptools.packages.find]
+include = ["langs*"]
+exclude = ["docs*", "tests*", "examples*"]

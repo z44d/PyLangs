@@ -1,15 +1,14 @@
 [project]
 name = "pylangs"
-version = "0.0.1dev"
+version = "0.0.1"
 authors = [
   { name="ZAID", email="me@zaid.pro" },
 ]
-description = "Soon"
+description = "A Python library designed to simplify the management of multiple languages in projects that need to support internationalization."
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.8"
 [tool.setuptools]
 include-package-data = false
 
 [tool.setuptools.packages.find]
 include = ["langs*"]
-exclude = ["docs*", "tests*", "examples*"]

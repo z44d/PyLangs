@@ -81,7 +81,7 @@ class Lang(JsonViewer):
         Returns:
             Optional[str]: The message text if found, otherwise None.
         """
-        return self.categories.get(category).get(k)
+        return self.categories.get(category, {}).get(k)
 
     def insert_to_category(self, category: str, k: str, v: str) -> None:
         """
@@ -93,9 +93,9 @@ class Lang(JsonViewer):
             v (str): The actual message text.
         """
         if category not in self.categories:
-            self.categories.update({category: {}})
+            self.categories[category] = {}
 
-        return self.categories[category].update({k: v})
+        self.categories[category][k] = v
 
     def delete_from_category(self, category: str, k: str) -> None:
         """
@@ -105,4 +105,11 @@ class Lang(JsonViewer):
             category (str): The category from which to delete the message.
             k (str): The key or identifier for the message.
         """
-        del self.categories[category][k]
+        if category in self.categories:
+            del self.categories[category][k]
+
+    def to_dict(self) -> Dict:
+        return {
+            'messages': dict(self.messages), 
+            'categories': {cat: dict(msgs) for cat, msgs in self.categories.items()} 
+        }
